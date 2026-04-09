@@ -1,0 +1,2 @@
+agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone,agency_fare_url
+PRT,Pittsburgh Regional Transit,https://www.rideprt.org,America/New_York,en,412-442-2000,https://www.rideprt.org/fares-and-passes/fare-information
