@@ -18,7 +18,7 @@ def process_route(shape_id: str, route_label: str, json_filename: str = "route_p
         The updated JSON data dictionary
     """
     # Load the data
-    df = pd.read_csv('../GTFS/shapes.txt')
+    df = pd.read_csv('GTFS/shapes.txt')
 
     # Filter for the specific shape_id and sort
     shape_data = df[df['shape_id'] == shape_id].sort_values('shape_pt_sequence')
