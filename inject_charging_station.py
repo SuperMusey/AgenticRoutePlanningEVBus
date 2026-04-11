@@ -34,9 +34,17 @@ def inject_charging_station(
     leg_1 = json.loads(compute_candidate_routes(current_node_id, station_id))
     leg_2 = json.loads(compute_candidate_routes(station_id, destination_node_id))
 
-    return json.dumps({
-        "legs": [
-            {"leg": 1, "from": current_node_id, "to": station_id, "routes": leg_1},
-            {"leg": 2, "from": station_id, "to": destination_node_id, "routes": leg_2},
-        ]
-    }, indent=2)
+    return json.dumps(
+        {
+            "legs": [
+                {"leg": 1, "from": current_node_id, "to": station_id, "routes": leg_1},
+                {
+                    "leg": 2,
+                    "from": station_id,
+                    "to": destination_node_id,
+                    "routes": leg_2,
+                },
+            ]
+        },
+        indent=2,
+    )

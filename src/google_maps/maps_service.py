@@ -1,4 +1,5 @@
 from typing import Optional
+import polyline
 
 import requests
 from requests.compat import quote
@@ -48,16 +49,6 @@ class MapsService:
         response = requests.get(url, headers=headers)
         return response.json()
 
-    def is_within_distance(
-        self, origin: str, destination: str, threshold_meters: int
-    ) -> bool:
-        """Check if the distance between origin and destination is within a specified threshold."""
-        response = self.get_routes_api_response(origin, destination)
-        if "routes" in response and len(response["routes"]) > 0:
-            distance = response["routes"][0].get("distanceMeters", float("inf"))
-            return distance <= threshold_meters
-        return False
-
     def get_polyline(
         self, origin: str, destination: str, waypoints: Optional[list[str]] = None
     ) -> Optional[str]:
@@ -67,10 +58,11 @@ class MapsService:
             return response["routes"][0].get("polyline", {}).get("encodedPolyline")
         return None
 
-    def geocode_address(self, address: str) -> Optional[dict]:
-        """Geocode an address to get its latitude and longitude."""
-        response = self.get_geocode_api_response(address)
-        if "results" in response and len(response["results"]) > 0:
-            location = response["results"][0]["location"]
-            return {"lat": location["latitude"], "lng": location["longitude"]}
-        return None
+    def decode_polyline(self, encoded_polyline: str) -> list[tuple[float, float]]:
+        """Decode an encoded polyline string to a list of (lat, lng) tuples.
+        Args:
+            encoded_polyline (str): Encoded polyline string from Google Maps API.
+        Returns:
+            List of (lat, lng) tuples representing coordinates along the route.
+        """
+        return polyline.decode(encoded_polyline)
