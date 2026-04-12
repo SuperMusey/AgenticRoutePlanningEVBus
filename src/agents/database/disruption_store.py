@@ -175,6 +175,25 @@ class DisruptionStore:
 
         return list(self.current_disruption.affected_routes.keys())
 
+    def is_stop_affected(self, route_name: str, stop_index: int) -> bool:
+        """
+        Check if a specific stop is affected by the disruption.
+
+        Args:
+            route_name: Name of the route
+            stop_index: Index of the stop
+        Returns:
+            True if the stop is affected, False otherwise
+        """
+        if not self.current_disruption:
+            return False
+
+        route = self.current_disruption.affected_routes.get(route_name)
+        if not route:
+            return False
+
+        return any(stop.stop_index == stop_index for stop in route.affected_stops)
+
     def clear(self) -> None:
         """Clear the current disruption and all data."""
         self.current_disruption = None

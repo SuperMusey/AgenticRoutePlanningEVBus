@@ -53,6 +53,37 @@ def _get_all_bus_stops() -> Dict[str, List[Tuple[float, float]]]:
     return all_stops
 
 
+def _haversine_distance(
+    coord1: Tuple[float, float], coord2: Tuple[float, float]
+) -> float:
+    """
+    Calculate distance between two coordinates using Haversine formula.
+
+    Args:
+        coord1: (lat, lng) tuple
+        coord2: (lat, lng) tuple
+
+    Returns:
+        Distance in kilometers (or miles if R is changed to 3958.8)
+    """
+    lat1, lon1 = coord1
+    lat2, lon2 = coord2
+
+    R = 6371
+
+    rlat1 = radians(lat1)
+    rlat2 = radians(lat2)
+    difflat = rlat2 - rlat1
+    difflon = radians(lon2 - lon1)
+
+    a = sin(difflat / 2) * sin(difflat / 2) + cos(rlat1) * cos(rlat2) * sin(
+        difflon / 2
+    ) * sin(difflon / 2)
+    d = 2 * R * asin(sqrt(a))
+
+    return d
+
+
 def _distance_point_to_segment(
     point: Tuple[float, float],
     segment_start: Tuple[float, float],
@@ -69,36 +100,10 @@ def _distance_point_to_segment(
     Returns:
         Tuple of (perpendicular_distance_km, is_on_segment)
     """
-    lat1, lon1 = segment_start
-    lat2, lon2 = segment_end
-    lat_p, lon_p = point
-
-    lat1_rad = radians(lat1)
-    lon1_rad = radians(lon1)
-    lat2_rad = radians(lat2)
-    lon2_rad = radians(lon2)
-    lat_p_rad = radians(lat_p)
-    lon_p_rad = radians(lon_p)
-
-    R = 6371  # Earth radius in km
-
-    # Distance A→B
-    dlat = lat2_rad - lat1_rad
-    dlon = lon2_rad - lon1_rad
-    a = sin(dlat / 2) ** 2 + cos(lat1_rad) * cos(lat2_rad) * sin(dlon / 2) ** 2
-    ab_distance = R * 2 * asin(sqrt(a)) if a > 0 else 0
-
-    # Distance A→Stop
-    dlat = lat_p_rad - lat1_rad
-    dlon = lon_p_rad - lon1_rad
-    a = sin(dlat / 2) ** 2 + cos(lat1_rad) * cos(lat_p_rad) * sin(dlon / 2) ** 2
-    ap_distance = R * 2 * asin(sqrt(a)) if a > 0 else 0
-
-    # Distance B→Stop
-    dlat = lat_p_rad - lat2_rad
-    dlon = lon_p_rad - lon2_rad
-    a = sin(dlat / 2) ** 2 + cos(lat2_rad) * cos(lat_p_rad) * sin(dlon / 2) ** 2
-    bp_distance = R * 2 * asin(sqrt(a)) if a > 0 else 0
+    # Calculate distances using haversine formula
+    ab_distance = _haversine_distance(segment_start, segment_end)
+    ap_distance = _haversine_distance(segment_start, point)
+    bp_distance = _haversine_distance(segment_end, point)
 
     if ab_distance == 0:
         return ap_distance, True
@@ -121,37 +126,6 @@ def _distance_point_to_segment(
         perp_distance = min(ap_distance, bp_distance)
 
     return perp_distance, is_on_segment
-
-
-def _haversine_distance(
-    coord1: Tuple[float, float], coord2: Tuple[float, float]
-) -> float:
-    """
-    Calculate distance between two coordinates using Haversine formula.
-
-    Args:
-        coord1: (lat, lng) tuple
-        coord2: (lat, lng) tuple
-
-    Returns:
-        Distance in kilometers
-    """
-    lat1, lon1 = coord1
-    lat2, lon2 = coord2
-
-    lat1_rad = radians(lat1)
-    lon1_rad = radians(lon1)
-    lat2_rad = radians(lat2)
-    lon2_rad = radians(lon2)
-
-    dlat = lat2_rad - lat1_rad
-    dlon = lon2_rad - lon1_rad
-
-    a = sin(dlat / 2) ** 2 + cos(lat1_rad) * cos(lat2_rad) * sin(dlon / 2) ** 2
-    c = 2 * asin(sqrt(a))
-    r = 6371  # Radius of earth in kilometers
-
-    return c * r
 
 
 def _is_within_proximity(
@@ -282,7 +256,6 @@ def suggest_alternative_route(
         Dict with success status and route name (simplified response)
     """
     try:
-        maps = _get_maps_service()
         all_stops = _get_all_bus_stops()
 
         # Get affected stop indices from database
@@ -302,20 +275,6 @@ def suggest_alternative_route(
                 "error": f"Route {route_name} not found",
                 "route_name": route_name,
             }
-
-        # Get disruption polyline to check substitutes against
-        encoded_disruption_polyline = maps.get_polyline(
-            disruption_address_1, disruption_address_2
-        )
-        if not encoded_disruption_polyline:
-            return {
-                "success": False,
-                "error": "Could not get disruption polyline",
-                "route_name": route_name,
-            }
-
-        disruption_polyline = maps.decode_polyline(encoded_disruption_polyline)
-        disruption_proximity_threshold_km = 0.1  # 100 meters
 
         # Convert to sorted set
         affected_set = sorted(set(affected_stops_indices))
@@ -340,15 +299,9 @@ def suggest_alternative_route(
 
                 for other_bus_stop_idx, other_bus_stop_coord in enumerate(other_stops):
                     # Check if this substitute stop is in the disruption area
-                    is_in_disruption = _is_within_proximity(
-                        other_bus_stop_coord,
-                        disruption_polyline,
-                        disruption_proximity_threshold_km,
-                    )
 
-                    # Skip this substitute if it's in the disruption area
-                    if is_in_disruption:
-                        continue
+                    if store.is_stop_affected(other_route_name, other_bus_stop_idx):
+                        continue  # Skip stops that are already affected
 
                     # Calculate distance using Haversine
                     distance = _haversine_distance(affected_coord, other_bus_stop_coord)
