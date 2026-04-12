@@ -89,28 +89,28 @@ class RoutePlanningAgent:
 Please identify which bus routes are affected and suggest alternative routes for them."""
         )
 
-        for chunk in self.agent.stream(
-            {"messages": [query]},
-            stream_mode="updates",
-            version="v2",
-        ):
-            if chunk["type"] == "updates":
-                for step, data in chunk["data"].items():
-                    print(f"step: {step}")
-                    print(f"content: {data['messages'][-1].content_blocks}")
-            if chunk["type"] == "messages":
-                token, metadata = chunk["data"]
-                print(f"node: {metadata['langgraph_node']}")
-                print(f"content: {token.content_blocks}")
-                print("\n")
+        # for chunk in self.agent.stream(
+        #     {"messages": [query]},
+        #     stream_mode="updates",
+        #     version="v2",
+        # ):
+        #     if chunk["type"] == "updates":
+        #         for step, data in chunk["data"].items():
+        #             print(f"step: {step}")
+        #             print(f"content: {data['messages'][-1].content_blocks}")
+        #     if chunk["type"] == "messages":
+        #         token, metadata = chunk["data"]
+        #         print(f"node: {metadata['langgraph_node']}")
+        #         print(f"content: {token.content_blocks}")
+        #         print("\n")
 
         # Run the agent with the disruption query
-        # result = self.agent.invoke({"messages": [query]})
+        result = self.agent.invoke({"messages": [query]})
 
         return {
             "success": True,
             "disruption_data": disruption_data,
-            "agent_analysis": "result",
+            "agent_analysis": result,
         }
 
 
@@ -133,10 +133,6 @@ def main():
     }
 
     disruption_response = agent.disruption_prompt(disruption_data)
-    print("Disruption Data:")
-    print(f"  {disruption_response['disruption_data']}")
-    print("Agent Analysis:")
-    print(disruption_response["agent_analysis"])
 
     print("=" * 70)
     print(f"Store at end of session: {store.get_disruption_summary()}")

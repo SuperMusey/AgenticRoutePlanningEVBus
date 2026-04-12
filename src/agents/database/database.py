@@ -5,13 +5,19 @@ Stores disruption info, affected routes/stops, and alternative route substitutio
 during a session. Data is cleared after the session ends.
 """
 
-from typing import Dict, List, Optional, Tuple
+import json
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+from math import radians, cos, sin, asin, sqrt
 from src.agents.database.database_models import (
     AffectedRoute,
     Disruption,
     Substitution,
     Stop,
 )
+from src.google_maps.maps_service import MapsService
+
+STOPS_PATH = Path(__file__).parent.parent.parent / "PRT routes" / "route_pairs.json"
 
 
 class DisruptionStore:
@@ -22,9 +28,48 @@ class DisruptionStore:
     substitutions have been made.
     """
 
-    def __init__(self, id: int = 1):
-        self.id = id
+    def __init__(self, maps_service: MapsService):
         self.current_disruption: Optional[Disruption] = None
+        self.maps_service = maps_service
+        self.stop_data = self._get_all_bus_stops()
+
+    def _load_route_pairs(self) -> Dict[str, Any]:
+        """Load route pairs from JSON file."""
+        try:
+            with open(STOPS_PATH, "r") as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"Error loading route_pairs.json: {e}")
+            return {"routes": []}
+
+    def _get_all_bus_stops(self) -> Dict[str, List[Tuple[float, float]]]:
+        """
+        Extract all bus stops from all routes, filtering to keep stops that are
+        far enough apart (>0.1 km) and limiting to 50 stops per route.
+
+        Returns:
+            Dict mapping route name to list of (lat, lng) coordinates
+        """
+        route_pairs = self._load_route_pairs()
+        all_stops = {}
+        proximity_threshold_km = 0.1  # 100 meters
+
+        for route_dict in route_pairs.get("routes", []):
+            for route_name, coordinates in route_dict.items():
+                filtered_stops = []
+                for coord in coordinates:
+                    # Keep first stop
+                    if not filtered_stops:
+                        filtered_stops.append(coord)
+                    # Keep stop if far enough from last kept stop
+                    elif (
+                        self.maps_service._haversine_distance(filtered_stops[-1], coord)
+                        >= proximity_threshold_km
+                    ):
+                        filtered_stops.append(coord)
+
+                all_stops[route_name] = [(s[0], s[1]) for s in filtered_stops]
+        return all_stops
 
     def start_disruption(self, address_1: str, address_2: str) -> None:
         """
@@ -53,7 +98,6 @@ class DisruptionStore:
             self.current_disruption.affected_routes[route_name] = AffectedRoute(
                 route_name=route_name
             )
-        print(f"[Store] Added affected route: {route_name}")
 
     def add_affected_stop(
         self, route_name: str, stop_index: int, coordinates: Tuple[float, float]
@@ -78,7 +122,6 @@ class DisruptionStore:
         route.affected_stops.append(
             Stop(stop_index=stop_index, coordinates=coordinates)
         )
-        print(f"[Store] Added affected stop to {route_name}: {stop_index}")
 
     def get_affected_stop_indices(self, route_name: str) -> List[int]:
         """
