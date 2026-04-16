@@ -39,7 +39,6 @@ class DisruptionStore:
             with open(STOPS_PATH, "r") as f:
                 return json.load(f)
         except Exception as e:
-            print(f"Error loading route_pairs.json: {e}")
             return {"routes": []}
 
     def _get_all_bus_stops(self) -> Dict[str, List[Tuple[float, float]]]:
@@ -259,3 +258,58 @@ class DisruptionStore:
             }
 
         return {"affected_routes": summary}
+
+    def create_substituted_routes(
+        self, all_substitutions: Dict[str, List[Substitution]]
+    ) -> Dict[str, List[Tuple[float, float]]]:
+        """
+        Create new routes with substituted stops.
+
+        Args:
+            all_substitutions: Dict mapping route name -> List of Substitutions
+
+        Returns:
+            Dict mapping route name -> List of (lat, lng) coordinates for the new route
+        """
+        substituted_routes = {}
+
+        for route_name, substitutions in all_substitutions.items():
+            # Get original route stops
+            original_stops = self.stop_data.get(route_name, [])
+            if not original_stops:
+                continue
+
+            # Start with original route coordinates
+            new_route = list(original_stops)
+
+            # Apply substitutions
+            for substitution in substitutions:
+                affected_index = substitution.affected_stop.stop_index
+                substitute_coords = substitution.substitute_stop.coordinates
+
+                # Replace the affected stop with the substitute
+                if affected_index < len(new_route):
+                    new_route[affected_index] = substitute_coords
+
+            substituted_routes[route_name] = new_route
+
+        return substituted_routes
+
+    def get_polyline_for_route(
+        self, route_name: str, substituted_coords: List[Tuple[float, float]]
+    ) -> Optional[str]:
+        """
+        Get the encoded polyline for a route with substitutions applied.
+
+        Args:
+            route_name: Name of the route
+            substituted_coords: List of (lat, lng) coordinates for the substituted route
+
+        Returns:
+            Encoded polyline string or None
+        """
+        # Get polyline from Google Maps API for the substituted route
+        origin = substituted_coords[0]
+        destination = substituted_coords[-1]
+        waypoints = substituted_coords[1:-1] if len(substituted_coords) > 2 else []
+        return self.maps_service.get_polyline(origin, destination, waypoints)
