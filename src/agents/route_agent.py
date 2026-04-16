@@ -133,6 +133,8 @@ def main():
     }
 
     disruption_response = agent.disruption_prompt(disruption_data)
+    print("Agent response to disruption:")
+    print(disruption_response)
 
     print("=" * 70)
     print(f"Store at end of session: {store.get_disruption_summary()}")
@@ -143,6 +145,14 @@ def main():
         for s in substitutions:
             print(f"    {s.model_dump_json()}")
     print("=" * 70)
+    print("Substituted routes:")
+    new_routes = store.create_substituted_routes(store.get_all_route_substitutions())
+    print("New routes after substitutions:")
+    print(new_routes.keys())
+    for route_name, route in new_routes.items():
+        print(
+            f"  {route_name} polyline: {store.get_polyline_for_route(route_name, route)}"
+        )
 
 
 if __name__ == "__main__":
