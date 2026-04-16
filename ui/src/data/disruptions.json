@@ -1,0 +1,24 @@
+[
+  {
+    "id": "d1",
+    "title": "Road closed on Murray Avenue",
+    "description": "I am marking a blocked road segment here for the UI.",
+    "type": "road_closure",
+    "severity": "high",
+    "locationType": "segment",
+    "segment": [
+      { "lat": 40.43795, "lng": -79.92310 },
+      { "lat": 40.43910, "lng": -79.92180 },
+      { "lat": 40.44010, "lng": -79.92070 }
+    ]
+  },
+  {
+    "id": "d2",
+    "title": "Accident near Forbes & Murray",
+    "description": "I am marking a single-point disruption here for the UI.",
+    "type": "accident",
+    "severity": "medium",
+    "locationType": "point",
+    "point": { "lat": 40.43755, "lng": -79.92395 }
+  }
+]
