@@ -1,0 +1,14 @@
+{
+  "event_type": "traffic disruption",
+  "roads_affected": [],
+  "intersections": [],
+  "neighborhoods": [
+    "East End"
+  ],
+  "area_description": "East End of Pittsburgh",
+  "severity": "unknown",
+  "duration_hours_estimate": null,
+  "confidence": 0.4,
+  "source_quote": "There are reports of some traffic issues in the East End of Pittsburgh this morning. Commuters may want to consider alternate routes.",
+  "additional_info": "No specific roads, cause, or duration provided. Officials have not yet released details on the incident."
+}

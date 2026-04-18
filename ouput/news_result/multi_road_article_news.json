@@ -1,0 +1,23 @@
+{
+  "event_type": "accident",
+  "roads_affected": [
+    "Interstate 376",
+    "Boulevard of the Allies"
+  ],
+  "intersections": [
+    "Squirrel Hill Tunnel",
+    "Edgewood exit"
+  ],
+  "neighborhoods": [
+    "Squirrel Hill",
+    "Edgewood",
+    "East End",
+    "Downtown Pittsburgh"
+  ],
+  "area_description": "Interstate 376 westbound near the Squirrel Hill Tunnel, with heavy spillover traffic on the Boulevard of the Allies",
+  "severity": "high",
+  "duration_hours_estimate": null,
+  "confidence": 0.88,
+  "source_quote": "A serious accident involving two tractor-trailers has shut down Interstate 376 westbound near the Squirrel Hill Tunnel, with delays backing up past the Edgewood exit. Pennsylvania State Police say the road may not fully reopen until late afternoon.",
+  "additional_info": "Tunnel remains open but traffic merging into single lane approaching the incident. Boulevard of the Allies seeing heavy spillover. Significant delays expected throughout the East End and into Downtown Pittsburgh."
+}

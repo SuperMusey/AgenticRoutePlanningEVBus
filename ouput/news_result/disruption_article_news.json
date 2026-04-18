@@ -1,0 +1,19 @@
+{
+  "event_type": "road closure",
+  "roads_affected": [
+    "Forbes Avenue"
+  ],
+  "intersections": [
+    "Murray Avenue",
+    "Shady Avenue"
+  ],
+  "neighborhoods": [
+    "Squirrel Hill"
+  ],
+  "area_description": "Forbes Avenue between Murray Avenue and Shady Avenue in Squirrel Hill",
+  "severity": "high",
+  "duration_hours_estimate": 48,
+  "confidence": 0.95,
+  "source_quote": "Forbes Avenue will be closed between Murray Avenue and Shady Avenue in Squirrel Hill starting Wednesday morning due to an emergency water main break. The closure is expected to last approximately 48 hours while crews work to repair the damaged pipe.",
+  "additional_info": "Drivers are advised to use Fifth Avenue or Beeler Street as alternate routes. Port Authority bus routes 61C and 61D will be affected, with buses unable to serve stops along the closed section. Emergency vehicles will maintain access throughout the repair period."
+}

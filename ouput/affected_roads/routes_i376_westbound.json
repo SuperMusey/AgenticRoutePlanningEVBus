@@ -1,0 +1,9 @@
+{
+  "result": {
+    "success": true,
+    "road_name": "I-376 Westbound closure near Squirrel Hill Tunnel",
+    "polyline_points": 94,
+    "affected_routes_found": 0,
+    "affected_routes": {}
+  }
+}

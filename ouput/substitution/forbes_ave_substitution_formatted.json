@@ -1,0 +1,94 @@
+{
+  "result": {
+    "summary": {
+      "affected_routes": {
+        "Route 61C (Outbound)": { "affected_stop_count": 2, "substitutions_made": 2 },
+        "Route 61C (Inbound)": { "affected_stop_count": 2, "substitutions_made": 2 },
+        "Route 64 (Inbound)": { "affected_stop_count": 4, "substitutions_made": 4 },
+        "Route 64 (Outbound)": { "affected_stop_count": 4, "substitutions_made": 4 }
+      }
+    },
+    "substitutions": {
+      "Route 61C (Outbound)": [
+        {
+          "original_route": "Route 61C (Outbound)",
+          "affected_stop": { "stop_index": 71, "coordinates": [40.43807, -79.92361] },
+          "substitute_route": "Route 64 (Inbound)",
+          "substitute_stop": { "stop_index": 71, "coordinates": [40.436525, -79.922895] }
+        },
+        {
+          "original_route": "Route 61C (Outbound)",
+          "affected_stop": { "stop_index": 72, "coordinates": [40.43717, -79.92293] },
+          "substitute_route": "Route 64 (Inbound)",
+          "substitute_stop": { "stop_index": 71, "coordinates": [40.436525, -79.922895] }
+        }
+      ],
+      "Route 61C (Inbound)": [
+        {
+          "original_route": "Route 61C (Inbound)",
+          "affected_stop": { "stop_index": 150, "coordinates": [40.43749, -79.922945] },
+          "substitute_route": "Route 64 (Inbound)",
+          "substitute_stop": { "stop_index": 71, "coordinates": [40.436525, -79.922895] }
+        },
+        {
+          "original_route": "Route 61C (Inbound)",
+          "affected_stop": { "stop_index": 151, "coordinates": [40.43807, -79.92386] },
+          "substitute_route": "Route 64 (Inbound)",
+          "substitute_stop": { "stop_index": 71, "coordinates": [40.436525, -79.922895] }
+        }
+      ],
+      "Route 64 (Inbound)": [
+        {
+          "original_route": "Route 64 (Inbound)",
+          "affected_stop": { "stop_index": 72, "coordinates": [40.43749, -79.922945] },
+          "substitute_route": "Route 61C (Inbound)",
+          "substitute_stop": { "stop_index": 149, "coordinates": [40.436525, -79.922895] }
+        },
+        {
+          "original_route": "Route 64 (Inbound)",
+          "affected_stop": { "stop_index": 73, "coordinates": [40.438058, -79.921955] },
+          "substitute_route": "Route 61C (Inbound)",
+          "substitute_stop": { "stop_index": 149, "coordinates": [40.436525, -79.922895] }
+        },
+        {
+          "original_route": "Route 64 (Inbound)",
+          "affected_stop": { "stop_index": 74, "coordinates": [40.43805, -79.92072] },
+          "substitute_route": "Route 61C (Inbound)",
+          "substitute_stop": { "stop_index": 149, "coordinates": [40.436525, -79.922895] }
+        },
+        {
+          "original_route": "Route 64 (Inbound)",
+          "affected_stop": { "stop_index": 75, "coordinates": [40.43805, -79.91935] },
+          "substitute_route": "Route 61C (Inbound)",
+          "substitute_stop": { "stop_index": 149, "coordinates": [40.436525, -79.922895] }
+        }
+      ],
+      "Route 64 (Outbound)": [
+        {
+          "original_route": "Route 64 (Outbound)",
+          "affected_stop": { "stop_index": 62, "coordinates": [40.43805, -79.91935] },
+          "substitute_route": "Route 61C (Inbound)",
+          "substitute_stop": { "stop_index": 149, "coordinates": [40.436525, -79.922895] }
+        },
+        {
+          "original_route": "Route 64 (Outbound)",
+          "affected_stop": { "stop_index": 63, "coordinates": [40.43805, -79.92072] },
+          "substitute_route": "Route 61C (Inbound)",
+          "substitute_stop": { "stop_index": 149, "coordinates": [40.436525, -79.922895] }
+        },
+        {
+          "original_route": "Route 64 (Outbound)",
+          "affected_stop": { "stop_index": 64, "coordinates": [40.438058, -79.921955] },
+          "substitute_route": "Route 61C (Inbound)",
+          "substitute_stop": { "stop_index": 149, "coordinates": [40.436525, -79.922895] }
+        },
+        {
+          "original_route": "Route 64 (Outbound)",
+          "affected_stop": { "stop_index": 65, "coordinates": [40.43749, -79.922945] },
+          "substitute_route": "Route 61C (Inbound)",
+          "substitute_stop": { "stop_index": 149, "coordinates": [40.436525, -79.922895] }
+        }
+      ]
+    }
+  }
+}

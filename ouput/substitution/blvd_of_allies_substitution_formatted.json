@@ -1,0 +1,139 @@
+{
+  "result": {
+    "summary": {
+      "affected_routes": {
+        "Route 61C (Outbound)": { "affected_stop_count": 10, "substitutions_made": 10 },
+        "Route 61C (Inbound)": { "affected_stop_count": 6, "substitutions_made": 6 },
+        "Route 28X (Inbound)": { "affected_stop_count": 11, "substitutions_made": 11 },
+        "Route 28X (Outbound)": { "affected_stop_count": 10, "substitutions_made": 10 },
+        "Route 71A (Outbound)": { "affected_stop_count": 17, "substitutions_made": 17 },
+        "Route 71D (Outbound)": { "affected_stop_count": 17, "substitutions_made": 17 },
+        "Route 93 (Inbound)": { "affected_stop_count": 6, "substitutions_made": 6 },
+        "Route 93 (Outbound)": { "affected_stop_count": 6, "substitutions_made": 6 },
+        "Route 71B (Inbound)": { "affected_stop_count": 6, "substitutions_made": 6 },
+        "Route 71B (Outbound)": { "affected_stop_count": 10, "substitutions_made": 10 }
+      }
+    },
+    "substitutions": {
+      "Route 61C (Outbound)": [
+        { "original_route": "Route 61C (Outbound)", "affected_stop": { "stop_index": 24, "coordinates": [40.43725, -79.97551] }, "substitute_route": "Route 71A (Outbound)", "substitute_stop": { "stop_index": 16, "coordinates": [40.43811, -79.97548] } },
+        { "original_route": "Route 61C (Outbound)", "affected_stop": { "stop_index": 25, "coordinates": [40.437193, -79.974312] }, "substitute_route": "Route 71A (Outbound)", "substitute_stop": { "stop_index": 15, "coordinates": [40.43799, -79.97427] } },
+        { "original_route": "Route 61C (Outbound)", "affected_stop": { "stop_index": 26, "coordinates": [40.43715, -79.97304] }, "substitute_route": "Route 71A (Outbound)", "substitute_stop": { "stop_index": 14, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 61C (Outbound)", "affected_stop": { "stop_index": 27, "coordinates": [40.43692, -79.97185] }, "substitute_route": "Route 71A (Outbound)", "substitute_stop": { "stop_index": 14, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 61C (Outbound)", "affected_stop": { "stop_index": 28, "coordinates": [40.43648, -79.97069] }, "substitute_route": "Route 71A (Outbound)", "substitute_stop": { "stop_index": 14, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 61C (Outbound)", "affected_stop": { "stop_index": 29, "coordinates": [40.43615, -79.96946] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 61C (Outbound)", "affected_stop": { "stop_index": 30, "coordinates": [40.4359, -79.96821] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 61C (Outbound)", "affected_stop": { "stop_index": 31, "coordinates": [40.43585, -79.967] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 61C (Outbound)", "affected_stop": { "stop_index": 32, "coordinates": [40.43583, -79.96569] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 61C (Outbound)", "affected_stop": { "stop_index": 33, "coordinates": [40.43616, -79.96444] }, "substitute_route": "Route 28X (Inbound)", "substitute_stop": { "stop_index": 356, "coordinates": [40.436895, -79.963425] } }
+      ],
+      "Route 61C (Inbound)": [
+        { "original_route": "Route 61C (Inbound)", "affected_stop": { "stop_index": 192, "coordinates": [40.43693, -79.9659] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 61C (Inbound)", "affected_stop": { "stop_index": 193, "coordinates": [40.43645, -79.96691] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 61C (Inbound)", "affected_stop": { "stop_index": 194, "coordinates": [40.43645, -79.96823] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 61C (Inbound)", "affected_stop": { "stop_index": 195, "coordinates": [40.436663, -79.969472] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 61C (Inbound)", "affected_stop": { "stop_index": 196, "coordinates": [40.43706, -79.9707] }, "substitute_route": "Route 71A (Outbound)", "substitute_stop": { "stop_index": 14, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 61C (Inbound)", "affected_stop": { "stop_index": 197, "coordinates": [40.43745, -79.971925] }, "substitute_route": "Route 71A (Outbound)", "substitute_stop": { "stop_index": 14, "coordinates": [40.43785, -79.97308] } }
+      ],
+      "Route 28X (Inbound)": [
+        { "original_route": "Route 28X (Inbound)", "affected_stop": { "stop_index": 345, "coordinates": [40.43626, -79.97692] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 23, "coordinates": [40.4373, -79.976775] } },
+        { "original_route": "Route 28X (Inbound)", "affected_stop": { "stop_index": 346, "coordinates": [40.43641, -79.97552] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 23, "coordinates": [40.4373, -79.976775] } },
+        { "original_route": "Route 28X (Inbound)", "affected_stop": { "stop_index": 347, "coordinates": [40.43654, -79.97433] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 77, "coordinates": [40.437975, -79.9741] } },
+        { "original_route": "Route 28X (Inbound)", "affected_stop": { "stop_index": 348, "coordinates": [40.43655, -79.97314] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 28X (Inbound)", "affected_stop": { "stop_index": 349, "coordinates": [40.43641, -79.97181] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 28X (Inbound)", "affected_stop": { "stop_index": 350, "coordinates": [40.43628, -79.9706] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 28X (Inbound)", "affected_stop": { "stop_index": 351, "coordinates": [40.43616, -79.96942] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 28X (Inbound)", "affected_stop": { "stop_index": 352, "coordinates": [40.43604, -79.96822] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 28X (Inbound)", "affected_stop": { "stop_index": 353, "coordinates": [40.43593, -79.96696] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 28X (Inbound)", "affected_stop": { "stop_index": 354, "coordinates": [40.43589, -79.96574] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 28X (Inbound)", "affected_stop": { "stop_index": 355, "coordinates": [40.43616, -79.96444] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 34, "coordinates": [40.436895, -79.963425] } }
+      ],
+      "Route 28X (Outbound)": [
+        { "original_route": "Route 28X (Outbound)", "affected_stop": { "stop_index": 53, "coordinates": [40.43687, -79.96586] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 28X (Outbound)", "affected_stop": { "stop_index": 54, "coordinates": [40.43628, -79.96687] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 28X (Outbound)", "affected_stop": { "stop_index": 55, "coordinates": [40.43623, -79.96808] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 28X (Outbound)", "affected_stop": { "stop_index": 56, "coordinates": [40.436255, -79.96932] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 28X (Outbound)", "affected_stop": { "stop_index": 57, "coordinates": [40.4366, -79.97058] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 28X (Outbound)", "affected_stop": { "stop_index": 58, "coordinates": [40.4368, -79.97181] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 28X (Outbound)", "affected_stop": { "stop_index": 59, "coordinates": [40.43688, -79.973] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 28X (Outbound)", "affected_stop": { "stop_index": 60, "coordinates": [40.43669, -79.97422] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 77, "coordinates": [40.437975, -79.9741] } },
+        { "original_route": "Route 28X (Outbound)", "affected_stop": { "stop_index": 61, "coordinates": [40.43651, -79.97541] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 23, "coordinates": [40.4373, -79.976775] } },
+        { "original_route": "Route 28X (Outbound)", "affected_stop": { "stop_index": 62, "coordinates": [40.43637, -79.9767] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 23, "coordinates": [40.4373, -79.976775] } }
+      ],
+      "Route 71A (Outbound)": [
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 8, "coordinates": [40.43693, -79.9659] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 9, "coordinates": [40.43645, -79.96691] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 10, "coordinates": [40.43645, -79.96823] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 11, "coordinates": [40.436663, -79.969472] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 12, "coordinates": [40.43706, -79.9707] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 13, "coordinates": [40.43745, -79.971925] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 17, "coordinates": [40.43727, -79.97595] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 23, "coordinates": [40.4373, -79.976775] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 18, "coordinates": [40.43721, -79.97473] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 199, "coordinates": [40.43799, -79.97427] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 19, "coordinates": [40.43716, -79.9735] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 20, "coordinates": [40.43703, -79.97227] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 21, "coordinates": [40.43668, -79.97118] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 22, "coordinates": [40.43629, -79.96998] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 23, "coordinates": [40.43599, -79.96877] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 24, "coordinates": [40.43586, -79.96756] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 25, "coordinates": [40.43584, -79.96637] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 26, "coordinates": [40.43585, -79.96512] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71A (Outbound)", "affected_stop": { "stop_index": 27, "coordinates": [40.436385, -79.964125] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 34, "coordinates": [40.436895, -79.963425] } }
+      ],
+      "Route 71D (Outbound)": [
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 8, "coordinates": [40.43693, -79.9659] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 9, "coordinates": [40.43645, -79.96691] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 10, "coordinates": [40.43645, -79.96823] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 11, "coordinates": [40.436663, -79.969472] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 12, "coordinates": [40.43706, -79.9707] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 13, "coordinates": [40.43745, -79.971925] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 17, "coordinates": [40.43727, -79.97595] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 23, "coordinates": [40.4373, -79.976775] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 18, "coordinates": [40.43721, -79.97473] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 199, "coordinates": [40.43799, -79.97427] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 19, "coordinates": [40.43716, -79.9735] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 20, "coordinates": [40.43703, -79.97227] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 21, "coordinates": [40.43668, -79.97118] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 22, "coordinates": [40.43629, -79.96998] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 23, "coordinates": [40.43599, -79.96877] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 24, "coordinates": [40.43586, -79.96756] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 25, "coordinates": [40.43584, -79.96637] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 26, "coordinates": [40.43585, -79.96512] }, "substitute_route": "Route 71B (Inbound)", "substitute_stop": { "stop_index": 70, "coordinates": [40.4371, -79.96577] } },
+        { "original_route": "Route 71D (Outbound)", "affected_stop": { "stop_index": 27, "coordinates": [40.436385, -79.964125] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 34, "coordinates": [40.436895, -79.963425] } }
+      ],
+      "Route 93 (Inbound)": [
+        { "original_route": "Route 93 (Inbound)", "affected_stop": { "stop_index": 68, "coordinates": [40.43635, -79.96215] }, "substitute_route": "Route 71A (Outbound)", "substitute_stop": { "stop_index": 28, "coordinates": [40.43702, -79.96325] } },
+        { "original_route": "Route 93 (Inbound)", "affected_stop": { "stop_index": 69, "coordinates": [40.43585, -79.96111] }, "substitute_route": "Route 71A (Outbound)", "substitute_stop": { "stop_index": 28, "coordinates": [40.43702, -79.96325] } },
+        { "original_route": "Route 93 (Inbound)", "affected_stop": { "stop_index": 70, "coordinates": [40.435875, -79.9599] }, "substitute_route": "Route 71A (Outbound)", "substitute_stop": { "stop_index": 29, "coordinates": [40.43766, -79.96236] } },
+        { "original_route": "Route 93 (Inbound)", "affected_stop": { "stop_index": 71, "coordinates": [40.4359, -79.95861] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 36, "coordinates": [40.43835, -79.96141] } },
+        { "original_route": "Route 93 (Inbound)", "affected_stop": { "stop_index": 72, "coordinates": [40.43558, -79.9575] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 36, "coordinates": [40.43835, -79.96141] } },
+        { "original_route": "Route 93 (Inbound)", "affected_stop": { "stop_index": 73, "coordinates": [40.43513, -79.95642] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 37, "coordinates": [40.43904, -79.96046] } }
+      ],
+      "Route 93 (Outbound)": [
+        { "original_route": "Route 93 (Outbound)", "affected_stop": { "stop_index": 98, "coordinates": [40.43444, -79.95697] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 36, "coordinates": [40.43835, -79.96141] } },
+        { "original_route": "Route 93 (Outbound)", "affected_stop": { "stop_index": 99, "coordinates": [40.43534, -79.95693] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 36, "coordinates": [40.43835, -79.96141] } },
+        { "original_route": "Route 93 (Outbound)", "affected_stop": { "stop_index": 100, "coordinates": [40.43589, -79.95812] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 36, "coordinates": [40.43835, -79.96141] } },
+        { "original_route": "Route 93 (Outbound)", "affected_stop": { "stop_index": 101, "coordinates": [40.435885, -79.95946] }, "substitute_route": "Route 71A (Outbound)", "substitute_stop": { "stop_index": 29, "coordinates": [40.43766, -79.96236] } },
+        { "original_route": "Route 93 (Outbound)", "affected_stop": { "stop_index": 102, "coordinates": [40.43585, -79.96079] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 35, "coordinates": [40.43762, -79.96243] } },
+        { "original_route": "Route 93 (Outbound)", "affected_stop": { "stop_index": 103, "coordinates": [40.43618, -79.96195] }, "substitute_route": "Route 71A (Outbound)", "substitute_stop": { "stop_index": 28, "coordinates": [40.43702, -79.96325] } }
+      ],
+      "Route 71B (Inbound)": [
+        { "original_route": "Route 71B (Inbound)", "affected_stop": { "stop_index": 71, "coordinates": [40.43647, -79.96674] }, "substitute_route": "Route 28X (Outbound)", "substitute_stop": { "stop_index": 52, "coordinates": [40.43761, -79.96512] } },
+        { "original_route": "Route 71B (Inbound)", "affected_stop": { "stop_index": 72, "coordinates": [40.43645, -79.968075] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 191, "coordinates": [40.43763, -79.96514] } },
+        { "original_route": "Route 71B (Inbound)", "affected_stop": { "stop_index": 73, "coordinates": [40.436615, -79.969325] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71B (Inbound)", "affected_stop": { "stop_index": 74, "coordinates": [40.43699, -79.970485] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71B (Inbound)", "affected_stop": { "stop_index": 75, "coordinates": [40.437385, -79.971712] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71B (Inbound)", "affected_stop": { "stop_index": 76, "coordinates": [40.43774, -79.97282] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } }
+      ],
+      "Route 71B (Outbound)": [
+        { "original_route": "Route 71B (Outbound)", "affected_stop": { "stop_index": 24, "coordinates": [40.43725, -79.97551] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 200, "coordinates": [40.43811, -79.97548] } },
+        { "original_route": "Route 71B (Outbound)", "affected_stop": { "stop_index": 25, "coordinates": [40.437193, -79.974312] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 199, "coordinates": [40.43799, -79.97427] } },
+        { "original_route": "Route 71B (Outbound)", "affected_stop": { "stop_index": 26, "coordinates": [40.43715, -79.97304] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71B (Outbound)", "affected_stop": { "stop_index": 27, "coordinates": [40.43692, -79.97185] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71B (Outbound)", "affected_stop": { "stop_index": 28, "coordinates": [40.43648, -79.97069] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71B (Outbound)", "affected_stop": { "stop_index": 29, "coordinates": [40.43615, -79.96946] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 198, "coordinates": [40.43785, -79.97308] } },
+        { "original_route": "Route 71B (Outbound)", "affected_stop": { "stop_index": 30, "coordinates": [40.4359, -79.96821] }, "substitute_route": "Route 61C (Inbound)", "substitute_stop": { "stop_index": 191, "coordinates": [40.43763, -79.96514] } },
+        { "original_route": "Route 71B (Outbound)", "affected_stop": { "stop_index": 31, "coordinates": [40.43585, -79.967] }, "substitute_route": "Route 28X (Outbound)", "substitute_stop": { "stop_index": 52, "coordinates": [40.43761, -79.96512] } },
+        { "original_route": "Route 71B (Outbound)", "affected_stop": { "stop_index": 32, "coordinates": [40.43583, -79.96569] }, "substitute_route": "Route 28X (Outbound)", "substitute_stop": { "stop_index": 52, "coordinates": [40.43761, -79.96512] } },
+        { "original_route": "Route 71B (Outbound)", "affected_stop": { "stop_index": 33, "coordinates": [40.43616, -79.96444] }, "substitute_route": "Route 61C (Outbound)", "substitute_stop": { "stop_index": 34, "coordinates": [40.436895, -79.963425] } }
+      ]
+    }
+  }
+}
