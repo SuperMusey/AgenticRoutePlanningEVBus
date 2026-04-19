@@ -1,24 +1,32 @@
-import os
 import polyline
 import requests
 from requests.compat import quote
-from typing import Any, Optional, Union, List, Tuple
 from math import radians, cos, sin, asin, sqrt
-from dotenv import load_dotenv
+from typing import Any, Dict, List, Optional, Tuple
+
+from src.config import get_google_api_key
 
 
 class MapsService:
-    def __init__(self, api_key):
+    def __init__(self, api_key: Optional[str] = None):
         self.api_key = api_key
 
+    @property
+    def has_api_key(self) -> bool:
+        return bool(self.api_key)
+
     @classmethod
-    def _get_maps_service(cls):
+    def _get_maps_service(cls, require_api_key: bool = True):
         """Initialize and return MapsService with API key from config."""
-        load_dotenv()
-        api_key = os.getenv("GOOGLE_API_KEY")
-        if not api_key:
-            raise ValueError("GOOGLE_API_KEY not set in environment")
+        api_key = get_google_api_key()
+        if require_api_key and not api_key:
+            raise ValueError("GOOGLE_MAPS_API_KEY not set in environment")
         return MapsService(api_key)
+
+    def _require_api_key(self) -> str:
+        if not self.api_key:
+            raise ValueError("GOOGLE_MAPS_API_KEY not set in environment")
+        return self.api_key
 
     def _haversine_distance(
         self, coord1: Tuple[float, float], coord2: Tuple[float, float]
@@ -128,60 +136,30 @@ class MapsService:
         return False
 
     def get_routes_api_response(
-        self,
-        origin: Union[str, Tuple[float, float]],
-        destination: Union[str, Tuple[float, float]],
-        waypoints: Optional[Union[list[str], List[Tuple[float, float]]]] = None,
-    ) -> Any:
+        self, origin: str, destination: str, waypoints: Optional[list[str]] = None
+    ):
         """Fetch directions from Google Maps Route API.
         Args:
-            origin (Union[str, Tuple[float, float]]): Starting location (e.g., "New York, NY" or (40.7128, -74.0060)).
-            destination (Union[str, Tuple[float, float]]): Ending location (e.g., "Boston, MA" or (42.3601, -71.0589)).
+            origin (str): Starting location (e.g., "New York, NY").
+            destination (str): Ending location (e.g., "Boston, MA").
             waypoints (list): List of intermediate locations.
         """
+        api_key = self._require_api_key()
         url = f"https://routes.googleapis.com/directions/v2:computeRoutes"
         headers = {
             "Content-Type": "application/json",
-            "X-Goog-Api-Key": self.api_key,
+            "X-Goog-Api-Key": api_key,
             "X-Goog-FieldMask": "routes.routeLabels,routes.duration,routes.legs,routes.distanceMeters,routes.polyline.encodedPolyline",
         }
-        body = {}
-        if isinstance(origin, tuple) or isinstance(destination, tuple):
-            body = {
-                "origin": {
-                    "location": {
-                        "latLng": {"latitude": origin[0], "longitude": origin[1]}
-                    }
-                },
-                "destination": {
-                    "location": {
-                        "latLng": {
-                            "latitude": destination[0],
-                            "longitude": destination[1],
-                        }
-                    }
-                },
-                "intermediates": [
-                    {"location": {"latLng": {"latitude": wp[0], "longitude": wp[1]}}}
-                    for wp in waypoints
-                ]
-                if waypoints
-                else [],
-                "routingPreference": "TRAFFIC_AWARE",
-                "travelMode": "DRIVE",
-                "computeAlternativeRoutes": True,
-            }
-        elif isinstance(origin, str) and isinstance(destination, str):
-            body = {
-                "origin": {"address": origin},
-                "destination": {"address": destination},
-                "intermediates": [{"address": wp} for wp in waypoints]
-                if waypoints
-                else [],
-                "routingPreference": "TRAFFIC_AWARE",
-                "travelMode": "DRIVE",
-                "computeAlternativeRoutes": True,
-            }
+        body = {
+            "origin": {"address": origin},
+            "destination": {"address": destination},
+            "intermediates": [{"address": wp} for wp in waypoints] if waypoints else [],
+            "routingPreference": "TRAFFIC_AWARE",
+            "travelMode": "DRIVE",
+            "computeAlternativeRoutes": True,
+        }
+
         response = requests.post(url, headers=headers, json=body)
         return response.json()
 
@@ -190,104 +168,22 @@ class MapsService:
         Args:
             address (str): The address to geocode (e.g., "1600 Amphitheatre Parkway, Mountain View, CA").
         """
+        api_key = self._require_api_key()
         encoded_address = quote(address, safe="")
         url = f"https://geocode.googleapis.com/v4/geocode/address/{encoded_address}"
         headers = {
-            "X-Goog-Api-Key": self.api_key,
+            "X-Goog-Api-Key": api_key,
         }
         response = requests.get(url, headers=headers)
         return response.json()
 
     def get_polyline(
-        self,
-        origin: Union[str, Tuple[float, float]],
-        destination: Union[str, Tuple[float, float]],
-        waypoints: Optional[Union[list[str], List[Tuple[float, float]]]] = None,
+        self, origin: str, destination: str, waypoints: Optional[list[str]] = None
     ) -> Optional[str]:
-        """Get the encoded polyline for the route between origin and destination.
-
-        If waypoints exceed 25 (Google Maps API limit), splits the route into
-        multiple segments and combines the polylines.
-
-        Args:
-            origin: Either an address string or a (lat, lng) tuple
-            destination: Either an address string or a (lat, lng) tuple
-            waypoints: Either a list of address strings or a list of (lat, lng) tuples
-
-        Returns:
-            Encoded polyline string or None
-        """
-        # If waypoints exceed API limit of 25, split into multiple segments
-        if waypoints and len(waypoints) > 25:
-            return self._get_polyline_with_segments(origin, destination, waypoints)
-
+        """Get the encoded polyline for the route between origin and destination."""
         response = self.get_routes_api_response(origin, destination, waypoints)
         if "routes" in response and len(response["routes"]) > 0:
             return response["routes"][0].get("polyline", {}).get("encodedPolyline")
-        return None
-
-    def _get_polyline_with_segments(
-        self,
-        origin: Union[str, Tuple[float, float]],
-        destination: Union[str, Tuple[float, float]],
-        waypoints: Union[list[str], List[Tuple[float, float]]],
-    ) -> Optional[str]:
-        """
-        Get polyline by splitting long waypoint lists into segments.
-
-        Args:
-            origin: Starting location
-            destination: Ending location
-            waypoints: List of waypoints (may exceed 25)
-
-        Returns:
-            Combined encoded polyline string or None
-        """
-        max_waypoints = 25
-        combined_coords = []
-
-        # Decode origin if it's a tuple
-        if isinstance(origin, tuple):
-            combined_coords.append(origin)
-
-        # Process waypoints in chunks
-        for i in range(0, len(waypoints), max_waypoints):
-            chunk = waypoints[i : i + max_waypoints]
-
-            # Determine the segment origin and destination
-            if i == 0:
-                segment_origin = origin
-            else:
-                # Use last waypoint as origin for next segment
-                segment_origin = waypoints[i - 1]
-
-            # Use next chunk's last point or final destination
-            if i + max_waypoints >= len(waypoints):
-                segment_destination = destination
-            else:
-                segment_destination = waypoints[i + max_waypoints - 1]
-
-            # Get polyline for this segment
-            response = self.get_routes_api_response(
-                segment_origin, segment_destination, chunk
-            )
-
-            if "routes" not in response or len(response["routes"]) == 0:
-                return None
-
-            polyline_str = (
-                response["routes"][0].get("polyline", {}).get("encodedPolyline")
-            )
-            if polyline_str:
-                # Decode and add coordinates (skip first point to avoid duplicates)
-                coords = self.decode_polyline(polyline_str)
-                if combined_coords:
-                    coords = coords[1:]  # Skip first point (duplicate)
-                combined_coords.extend(coords)
-
-        # Re-encode the combined coordinates
-        if combined_coords:
-            return polyline.encode(combined_coords)
         return None
 
     def decode_polyline(self, encoded_polyline: str) -> list[tuple[float, float]]:
