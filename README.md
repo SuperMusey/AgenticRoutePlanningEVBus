@@ -1,5 +1,65 @@
 # AgenticRoutePlanningEVBus
-Route planning of EV Buses using Agentic AI
+
+Pittsburgh EV bus route disruption MCP server.
+
+## System requirements
+
+- Python **3.13+**
+- [`uv`](https://docs.astral.sh/uv/) for dependency management (recommended). `pip` also works.
+- Python dependencies (installed automatically): `mcp[cli]>=1.0.0`, `python-dotenv`, `polyline`, `requests`.
+
+## LLM / client requirements
+
+- The server itself **does not call any LLM** and requires **no LLM API key**. Classification and extraction are exposed as MCP _prompts_ that the connected client's model executes.
+- You need an MCP-compatible client. MCP host like Claude code, Codex, Cursor, etc. That supports stdio MCP servers.
+- Recommended client model: any current Claude model (Opus / Sonnet / Haiku) capable of tool use. The orchestration prompts are written for tool-using chat models.
+- `GOOGLE_MAPS_API_KEY` is also needed. Without it, the server still starts and can use `save_blocked_road_polyline` plus `identify_affected_routes_from_blocked_roads`.
+
+## Setup
+
+```bash
+# 1. Clone
+git clone https://github.com/SuperMusey/AgenticRoutePlanningEVBus.git
+cd AgenticRoutePlanningEVBus
+
+# 2. Install dependencies (creates .venv automatically)
+uv sync
+
+# 3. (Optional) configure Google Maps API key
+cp .env.example .env
+# then edit .env and set GOOGLE_MAPS_API_KEY=<your key>
+```
+
+## How to run
+
+Run as an MCP server from a client. The repo ships a working `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "ev-bus-route-planning": {
+      "command": "uv",
+      "args": ["--directory", "D:\\EV__CAR", "run", "python", "server.py"]
+    }
+  }
+}
+```
+
+1. Update the `--directory` path to wherever you cloned the repo.
+2. Launch your MCP client (e.g. `claude`) — the server will appear in the client's tool list.
+3. Drive the pipeline below by feeding the client an article (path to a `.txt` file or raw text).
+
+## Pipeline
+
+1. Read the article or traffic bulletin with `read_news_file`, or pass raw article text directly to the client.
+2. Classify the text with the `classify_disruption` prompt.
+3. If the article is actionable, extract structured fields with the `extract_disruption_data` prompt.
+4. Build one or more Pittsburgh disruption corridors from the extracted roads, intersections, neighborhoods, and area description.
+5. Identify affected routes with `identify_affected_routes_from_blocked_roads` and transfer the data to the UI with `save_blocked_road_polyline`.
+6. For every affected route returned by the identify step, call `suggest_alternative_route`.
+7. Call `get_disruption_summary` to collect affected-route counts and substitution details.
+8. Call `clear_disruption_session` before the next disruption or corridor.
+
 # EV Bus UI Integration README
 
 This README explains exactly what I built, where each file lives, and what the integrator should change later.
